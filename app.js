@@ -155,8 +155,8 @@
       btns.forEach(b=>{
         b.href = url;
         const sub = b.querySelector('.btn-sub');
-        if(sub) sub.textContent = `DMG • ${ver} • ${size || '~45 MB'}`;
-        else if(b.classList.contains('large')) b.innerHTML = `<span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Descargar MAKP ${ver} para macOS`;
+        if(sub) sub.textContent = `DMG • ${ver}`;
+        else if(b.classList.contains('large')) b.innerHTML = `<span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> DESCARGAR`;
       });
       if(info) info.textContent = `Última: ${tag} • ${date}`;
       if(banner) banner.hidden = true;
