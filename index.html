@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAKP — A MKV player for MacOS</title>
-  <meta name="description" content="Makp: A MKV player for MacOS. Reproductor nativo con Liquid Glass, VLCKit, preview hover y playlists. Soporta MKV/MP4/MPG/AVI/MOV/WMV y más. DMG para Apple Silicon e Intel." />
-  <meta property="og:title" content="Makp: A MKV player for MacOS" />
-  <meta property="og:description" content="Nativo • Liquid Glass • VLCKit • 12 formatos. El reproductor que macOS merecía." />
+  <title>MAKP — A MKV PLAYER FOR MACOS</title>
+  <meta name="description" content="Makp: A MKV PLAYER FOR MACOS. Reproductor nativo con Liquid Glass, VLCKit, preview hover y playlists. Soporta MKV/MP4/MPG/AVI/MOV/WMV y más. DMG para Apple Silicon e Intel." />
+  <meta property="og:title" content="Makp: A MKV PLAYER FOR MACOS" />
+  <meta property="og:description" content="NATIVO • LIQUID GLASS • VLCKIT • 12 FORMATOS. EL REPRODUCTOR QUE MACOS MERECÍA." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://andyechc.github.io/makp-landing/" />
+  <meta property="og:image" content="assets/og.png" />
   <meta name="theme-color" content="#9933E6" />
   <meta name="color-scheme" content="dark" />
-  <link rel="icon" href="assets/icon.png" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="dark">
-  <!-- Background layers (parallax) -->
   <div class="bg-root" aria-hidden="true">
     <div class="bg-gradient"></div>
     <div class="bg-grid"></div>
@@ -27,87 +29,75 @@
     <div class="orb orb3" data-parallax="0.08"></div>
   </div>
 
-  <!-- Nav -->
   <nav class="nav">
     <div class="nav-inner">
       <a class="brand" href="#">
         <span class="brand-mark"><img src="assets/icon.png" alt="MAKP" /></span>
         <span class="brand-name">MAKP</span>
-        <span class="brand-badge">v1.1 • Tahoe 26</span>
+        <span class="brand-badge">V1.1 • TAHOE 26</span>
       </a>
       <div class="nav-links">
-        <a href="#features">Funciones</a>
-        <a href="#showcase">Vista previa</a>
-        <a href="https://github.com/andyechc/makp-landing" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="#features">FUNCIONES</a>
+        <a href="#preview">VISTA PREVIA</a>
+        <a href="https://github.com/andyechc/makp-landing" target="_blank" rel="noopener">GITHUB ↗</a>
       </div>
-      <a class="nav-cta" href="#download">Descargar</a>
+      <a class="nav-cta" href="#download">DESCARGAR</a>
     </div>
   </nav>
 
-  <!-- Banner (release fallback) -->
   <div id="private-banner" class="banner" hidden>
     <span class="banner-dot"></span>
-    <span>Aún no hay Release pública. Sube tu primer DMG para activar la descarga directa.</span>
-    <a href="https://github.com/andyechc/makp-landing/releases" target="_blank">Ver releases →</a>
+    <span>AÚN NO HAY RELEASE PÚBLICA. SUBE TU PRIMER DMG PARA ACTIVAR LA DESCARGA DIRECTA.</span>
+    <a href="https://github.com/andyechc/makp-landing/releases" target="_blank">VER RELEASES →</a>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO: uppercase, caret centered, buttons to right, no description, no Ver en GitHub -->
   <header class="hero" id="top">
     <div class="hero-inner">
-      <!-- Logo -->
       <div class="hero-logo-wrap reveal" data-delay="0">
         <div class="logo-glow"></div>
         <div class="logo-ring"></div>
         <img src="assets/icon.png" alt="MAKP logo" class="hero-logo" />
       </div>
 
-      <!-- Eyebrow -->
-      <div class="eyebrow reveal" data-delay="100">
+      <div class="eyebrow reveal" data-delay="80">
         <span class="eyebrow-dot"></span>
         <span>NATIVE • SWIFTUI • LIQUID GLASS • VLCKIT</span>
         <span class="eyebrow-pulse"></span>
       </div>
 
-      <!-- Title with typewriter -->
-      <h1 class="hero-title reveal" data-delay="180">
-        <span class="hero-makp">Makp:</span>
-        <span class="hero-rotor">A <span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span> player for MacOS</span>
-      </h1>
-
-      <p class="hero-sub reveal" data-delay="260">
-        El reproductor nativo que faltaba. Arranca instantáneo, lee tu disco tal cual está,<br/>
-        y reproduce <strong>todo</strong> con hardware accel + VLCKit cuando toca.
-      </p>
-
-      <div class="hero-cta reveal" data-delay="340" id="download">
-        <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
-          <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="btn-label">Descargar para macOS</span>
-          <span class="btn-sub">DMG • 1.1 • ~45 MB</span>
-        </a>
-        <a class="btn btn-ghost" href="https://github.com/andyechc/makp-landing" target="_blank" rel="noopener">
-          <span>Ver en GitHub</span>
-          <span class="btn-arrow">↗</span>
-        </a>
+      <!-- Main row: title left, CTA right -->
+      <div class="hero-main reveal" data-delay="160">
+        <h1 class="hero-title">
+          <span class="hero-makp">MAKP:</span>
+          <span class="hero-rotor">A <span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span> PLAYER FOR MACOS</span>
+        </h1>
+        <div class="hero-cta" id="download">
+          <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
+            <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="btn-label">DESCARGAR PARA MACOS</span>
+            <span class="btn-sub">DMG • 1.1 • ~45 MB</span>
+          </a>
+          <div class="hero-cta-meta">
+            <span id="release-info">DETECTANDO ÚLTIMO RELEASE…</span>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-meta reveal" data-delay="420">
-        <span class="meta-item"><strong>macOS 26.5+</strong> • Apple Silicon & Intel</span>
+      <div class="hero-meta reveal" data-delay="260">
+        <span class="meta-item"><strong>MACOS 26.5+</strong> • APPLE SILICON & INTEL</span>
         <span class="meta-dot"></span>
-        <span class="meta-item">Sin sandbox • Sin telemetría</span>
-        <span class="meta-dot"></span>
-        <span class="meta-item" id="release-info">Detectando último release…</span>
+        <span class="meta-item">SIN SANDBOX • SIN TELEMETRÍA</span>
       </div>
 
-      <div class="hero-trust reveal" data-delay="480">
-        <span class="trust-pill"><span class="trust-check">✓</span> Firma ad-hoc</span>
-        <span class="trust-pill"><span class="trust-check">✓</span> Drag a Aplicaciones</span>
-        <span class="trust-pill"><span class="trust-check">✓</span> 12 formatos</span>
+      <div class="hero-trust reveal" data-delay="320">
+        <span class="trust-pill"><span class="trust-check">✓</span> FIRMA AD-HOC</span>
+        <span class="trust-pill"><span class="trust-check">✓</span> DRAG A APLICACIONES</span>
+        <span class="trust-pill"><span class="trust-check">✓</span> 12 FORMATOS</span>
       </div>
     </div>
 
-    <!-- Formats marquee -->
-    <div class="marquee reveal" data-delay="520" aria-label="Formatos soportados">
+    <div class="marquee reveal" data-delay="380" aria-label="Formatos soportados">
       <div class="marquee-track">
         <span class="fmt primary">MKV</span><span class="sep">•</span>
         <span class="fmt">MP4</span><span class="sep">•</span>
@@ -121,7 +111,6 @@
         <span class="fmt">TS</span><span class="sep">•</span>
         <span class="fmt">VOB</span><span class="sep">•</span>
         <span class="fmt">3GP</span><span class="sep">•</span>
-        <!-- duplicate for loop -->
         <span class="fmt primary">MKV</span><span class="sep">•</span>
         <span class="fmt">MP4</span><span class="sep">•</span>
         <span class="fmt">MPG</span><span class="sep">•</span>
@@ -133,68 +122,37 @@
       </div>
     </div>
 
-    <!-- Scroll indicator -->
     <div class="scroll-hint" aria-hidden="true">
-      <span>scroll</span>
+      <span>SCROLL</span>
       <i></i>
     </div>
   </header>
 
-  <!-- SHOWCASE WINDOW (parallax) -->
-  <section id="showcase" class="showcase">
+  <!-- PREVIEW PLACEHOLDER -->
+  <section id="preview" class="preview">
     <div class="container">
       <div class="section-head reveal">
-        <h2>Liquid Glass, rendimiento nativo</h2>
-        <p>Sidebar real, grid/lista, hover preview, y un player que desaparece hasta que lo necesitas.</p>
+        <h2>VISTA PREVIA</h2>
+        <p>SCREENSHOT REAL DE LA APP — PRÓXIMAMENTE</p>
       </div>
-
-      <div class="window-wrap reveal" data-parallax="0.06">
-        <div class="window-glow"></div>
-        <div class="window">
-          <div class="window-bar">
+      <div class="preview-placeholder reveal" data-delay="80">
+        <div class="placeholder-frame">
+          <div class="placeholder-bar">
             <span class="traffic"><i></i><i></i><i></i></span>
-            <span class="window-title">MAKP — ~/Movies</span>
-            <span class="window-actions"><span class="win-icon">◧</span><span class="win-icon">⊞</span></span>
+            <span class="placeholder-title">MAKP — SCREENSHOT</span>
+            <span class="placeholder-actions">◧ ⊞</span>
           </div>
-          <div class="window-body">
-            <aside class="win-sidebar">
-              <div class="sb-section">Favoritos</div>
-              <div class="sb-item active">🎬 Películas <span>128</span></div>
-              <div class="sb-item">💾 Dispositivos <span>3</span></div>
-              <div class="sb-item">📁 Descargas</div>
-              <div class="sb-section">Dispositivos</div>
-              <div class="dev"><span class="dev-dot" style="background:#BF59FF"></span> Macintosh HD <small>APFS</small></div>
-              <div class="dev"><span class="dev-dot" style="background:#30D158"></span> USB_4TB <small>ExFAT</small></div>
-              <div class="sb-section">Codecs</div>
-              <div class="codec-legend"><span class="c" style="background:rgba(191,89,255,0.2); border-color:rgba(191,89,255,0.4)">MKV VLC</span><span class="c">MP4 HW</span></div>
-            </aside>
-            <section class="win-main">
-              <div class="toolbar">
-                <div class="crumbs"><span>Movies</span> › <span>Viajes 2024</span></div>
-                <div class="toolbar-right">
-                  <span class="search">⌘F Buscar</span>
-                  <span class="view">▦ ▤</span>
-                </div>
-              </div>
-              <div class="grid">
-                <div class="card folder"><div class="thumb">📁</div><span>Kyoto</span><small>24 videos</small></div>
-                <div class="card video hover"><div class="thumb" style="background:linear-gradient(135deg,#BF59FF,#9933E6)"><span class="play">▶</span><span class="dur">12:42</span><span class="hover-preview">hover preview</span></div><span>sunset_tokyo.mkv</span><small>MKV • VLC • 4K</small></div>
-                <div class="card video"><div class="thumb" style="background:linear-gradient(135deg,#5AC8FA,#007AFF)"><span class="play">▶</span><span class="dur">03:11</span></div><span>clip_001.mp4</span><small>MP4 • HW • 318 MB</small></div>
-                <div class="card folder"><div class="thumb">📁</div><span>Barcelona</span><small>7 videos</small></div>
-                <div class="card video"><div class="thumb" style="background:linear-gradient(135deg,#FF9F0A,#FF375E)"><span class="play">▶</span><span class="dur">42:18</span></div><span>concierto.mov</span><small>MOV • HW</small></div>
-                <div class="card video"><div class="thumb" style="background:linear-gradient(135deg,#30D158,#007AFF)"><span class="play">▶</span><span class="dur">08:05</span></div><span>tutorial_final.mp4</span><small>Resume 3:21</small></div>
-              </div>
-              <div class="player-mini">
-                <div class="mini-thumb"></div>
-                <div class="mini-meta"><strong>sunset_tokyo.mkv</strong><span>00:42 / 12:42 • 1080p • VLC</span></div>
-                <div class="mini-controls"><span>⏮</span><span class="play-btn">⏸</span><span>⏭</span></div>
-                <div class="seek"><i style="width:38%"></i></div>
-              </div>
-            </section>
+          <div class="placeholder-body">
+            <div class="placeholder-icon">🖼️</div>
+            <h3>SCREENSHOT REAL PRÓXIMAMENTE</h3>
+            <p>Aquí irá una captura real de MAKP en macOS 26 Tahoe<br/>con Liquid Glass, sidebar y player.</p>
+            <div class="placeholder-meta">
+              <span>16:10 • 2560×1600 • @2x</span>
+            </div>
           </div>
         </div>
+        <div class="placeholder-glow"></div>
       </div>
-      <p class="showcase-note reveal">Fondos con material, hover states y controles auto-hide. Inspirado en Tahoe 26.</p>
     </div>
   </section>
 
@@ -202,60 +160,46 @@
   <section id="features" class="section">
     <div class="container">
       <div class="section-head reveal">
-        <h2>Diseñado para ver, no para configurar</h2>
-        <p>Todo lo que esperas de un gestor + reproductor nativo, sin Electron ni plugins raros.</p>
+        <h2>DISEÑADO PARA VER, NO PARA CONFIGURAR</h2>
+        <p>TODO LO QUE ESPERAS DE UN GESTOR + REPRODUCTOR NATIVO, SIN ELECTRON NI PLUGINS RAROS.</p>
       </div>
       <div class="features">
-        <div class="f-card reveal" data-delay="0"><div class="f-icon">🗂️</div><h3>Navegación real</h3><p>Sidebar con volúmenes APFS/ExFAT, breadcrumbs, lista y grid, búsqueda <code>⌘F</code> instantánea y flechas.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="80"><div class="f-icon">👁️</div><h3>Hover preview</h3><p>Thumbnails al pasar, duración y metadata sin abrir. Cache inteligente para miles de archivos.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="160"><div class="f-icon">▶️</div><h3>Motor dual</h3><p><strong>AVFoundation</strong> por defecto (HW) + <strong>VLCKit</strong> auto para MKV/AVI/WMV/WEBM.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="0"><div class="f-icon">🎞️</div><h3>Playlist inteligente</h3><p>Resume modal, “continuar donde lo dejaste”, sidebar de playlist y selector de audio/subs.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="80"><div class="f-icon">✨</div><h3>Liquid Glass</h3><p>Toolbars con material, blur 20px, saturación y estados hover de macOS 26.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="160"><div class="f-icon">⌨️</div><h3>Atajos que importan</h3><p>Play/pause, seek ±10s, volumen, fullscreen, next/prev — todo desde teclado.</p><span class="f-grad"></span></div>
+        <div class="f-card reveal" data-delay="0"><div class="f-icon">🗂️</div><h3>NAVEGACIÓN REAL</h3><p>SIDEBAR CON VOLÚMENES APFS/EXFAT, BREADCRUMBS, LISTA Y GRID, BÚSQUEDA <code>⌘F</code> INSTANTÁNEA Y FLECHAS.</p><span class="f-grad"></span></div>
+        <div class="f-card reveal" data-delay="80"><div class="f-icon">👁️</div><h3>HOVER PREVIEW</h3><p>THUMBNAILS AL PASAR, DURACIÓN Y METADATA SIN ABRIR. CACHE INTELIGENTE PARA MILES DE ARCHIVOS.</p><span class="f-grad"></span></div>
+        <div class="f-card reveal" data-delay="160"><div class="f-icon">▶️</div><h3>MOTOR DUAL</h3><p><strong>AVFOUNDATION</strong> POR DEFECTO (HW) + <strong>VLCKIT</strong> AUTO PARA MKV/AVI/WMV/WEBM.</p><span class="f-grad"></span></div>
+        <div class="f-card reveal" data-delay="0"><div class="f-icon">🎞️</div><h3>PLAYLIST INTELIGENTE</h3><p>RESUME MODAL, “CONTINUAR DONDE LO DEJASTE”, SIDEBAR DE PLAYLIST Y SELECTOR DE AUDIO/SUBS.</p><span class="f-grad"></span></div>
+        <div class="f-card reveal" data-delay="80"><div class="f-icon">✨</div><h3>LIQUID GLASS</h3><p>TOOLBARS CON MATERIAL, BLUR 20PX, SATURACIÓN Y ESTADOS HOVER DE MACOS 26.</p><span class="f-grad"></span></div>
+        <div class="f-card reveal" data-delay="160"><div class="f-icon">⌨️</div><h3>ATAJOS QUE IMPORTAN</h3><p>PLAY/PAUSE, SEEK ±10S, VOLUMEN, FULLSCREEN, NEXT/PREV — TODO DESDE TECLADO.</p><span class="f-grad"></span></div>
       </div>
     </div>
   </section>
 
-  <!-- INSTALL -->
-  <section class="section install">
-    <div class="container split">
-      <div class="reveal">
-        <h2>Instalar en 10 segundos</h2>
-        <ol class="steps">
-          <li><span class="step-n">1</span><span><strong>Descarga el DMG</strong> clicando arriba o desde <a href="https://github.com/andyechc/makp-landing/releases" target="_blank">Releases</a></span></li>
-          <li><span class="step-n">2</span><span><strong>Abre el DMG</strong> y arrastra <code>MAKP.app</code> a <code>Aplicaciones</code></span></li>
-          <li><span class="step-n">3</span><span><strong>Primer arranque:</strong> clic derecho → Abrir (firma ad-hoc, no notarizado) → Permitir</span></li>
-        </ol>
-        <div class="req-box">
-          <h4>Requisitos</h4>
-          <ul>
-            <li>macOS 26.5 Tahoe o superior</li>
-            <li>Apple Silicon & Intel — universal con <code>--universal</code></li>
-            <li>Sin sandbox, acceso completo a discos externos</li>
-          </ul>
-          <p class="small">Para evitar “Unidentified developer” firma con tu <code>DEVELOPMENT_TEAM</code> y notariza con <code>notarytool</code>. Workflow listo en <code>scripts/create-dmg.sh</code>.</p>
-        </div>
+  <!-- REQUISITOS (sin instalar en 10s) -->
+  <section class="section requirements">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>REQUISITOS</h2>
+        <p>LO MÍNIMO PARA QUE VUELE.</p>
       </div>
-      <div class="code-card reveal" data-delay="120">
-        <div class="code-head">
-          <span class="code-dots"><i></i><i></i><i></i></span>
-          <span>Terminal — zsh</span>
-          <span class="code-copy" data-copy>copiar</span>
+      <div class="req-grid reveal" data-delay="80">
+        <div class="req-box">
+          <h4>REQUISITOS DEL SISTEMA</h4>
+          <ul>
+            <li>MACOS 26.5 TAHOE O SUPERIOR</li>
+            <li>APPLE SILICON & INTEL — UNIVERSAL CON <code>--UNIVERSAL</code></li>
+            <li>SIN SANDBOX, ACCESO COMPLETO A DISCOS EXTERNOS</li>
+          </ul>
+          <p class="small">PARA EVITAR “UNIDENTIFIED DEVELOPER” FIRMA CON TU <code>DEVELOPMENT_TEAM</code> Y NOTARIZA CON <code>NOTARYTOOL</code>. WORKFLOW LISTO EN <code>SCRIPTS/CREATE-DMG.SH</code>.</p>
         </div>
-<pre><code id="code-block"># 1. Clona (requiere acceso al repo privado)
-git clone https://github.com/andyechc/makp.git
-cd makp
-
-# 2. Build + DMG (Release)
-chmod +x scripts/create-dmg.sh
-./scripts/create-dmg.sh
-
-# DMG resultante: dist/MAKP-1.1.dmg
-
-# 3. Publicar en esta landing (repo público):
-gh release create v1.1 dist/MAKP-1.1.dmg \
-  --repo andyechc/makp-landing \
-  --title "MAKP v1.1" --notes "Primera release pública"</code></pre>
+        <div class="req-box">
+          <h4>FORMATOS SOPORTADOS</h4>
+          <ul>
+            <li><strong>HW (AVFOUNDATION):</strong> MP4, M4V, MOV</li>
+            <li><strong>VLC (AUTOMÁTICO):</strong> MKV, AVI, WMV, FLV, WEBM, MPG, TS, VOB, 3GP</li>
+            <li>DETECCIÓN AUTOMÁTICA — SIN CONFIGURACIÓN</li>
+          </ul>
+          <p class="small">MKV ES EL FOCO PRINCIPAL: OPTIMIZADO PARA REPRODUCCIÓN FLUIDA Y SEEK INSTANTÁNEO.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -264,21 +208,21 @@ gh release create v1.1 dist/MAKP-1.1.dmg \
   <section class="cta">
     <div class="cta-bg" data-parallax="0.04"></div>
     <div class="container cta-inner reveal">
-      <div class="cta-badge">⚡ Peso ligero • Arranque instantáneo</div>
-      <h2>¿Listo para probarlo?</h2>
-      <p>Tu biblioteca tal cual está en disco. Sin importar, sin duplicar.</p>
+      <div class="cta-badge">⚡ PESO LIGERO • ARRANQUE INSTANTÁNEO</div>
+      <h2>¿LISTO PARA PROBARLO?</h2>
+      <p>TU BIBLIOTECA TAL CUAL ESTÁ EN DISCO. SIN IMPORTAR, SIN DUPLICAR.</p>
       <a id="download-btn2" class="btn btn-primary large" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
         <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        Descargar MAKP para macOS
+        DESCARGAR MAKP PARA MACOS
       </a>
-      <p class="small cta-small">También en <a href="https://github.com/andyechc/makp-landing/releases/latest" target="_blank">última release</a> o compilando en Xcode 26.5</p>
+      <p class="small cta-small">TAMBIÉN EN <a href="https://github.com/andyechc/makp-landing/releases/latest" target="_blank">ÚLTIMA RELEASE</a> O COMPILANDO EN XCODE 26.5</p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container foot">
-      <span>© 2026 andyechc • MAKP • <a href="https://github.com/andyechc/makp-landing">makp-landing</a> • <a href="https://github.com/andyechc/makp">source privado</a></span>
-      <span>SwiftUI + VLCKit • Liquid Glass</span>
+      <span>© 2026 ANDYECHC • MAKP • <a href="https://github.com/andyechc/makp-landing">MAKP-LANDING</a> • <a href="https://github.com/andyechc/makp">SOURCE PRIVADO</a></span>
+      <span>SWIFTUI + VLCKIT • LIQUID GLASS</span>
     </div>
   </footer>
 
