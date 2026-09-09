@@ -29,29 +29,24 @@
     <div class="orb orb3" data-parallax="0.08"></div>
   </div>
 
-  <nav class="nav">
+  <nav class="nav" id="nav">
     <div class="nav-inner">
       <a class="brand" href="#">
         <span class="brand-mark"><img src="assets/icon.png" alt="MAKP" /></span>
-        <span class="brand-name">MAKP</span>
-        <span class="brand-badge">V1.1 • TAHOE 26</span>
       </a>
       <div class="nav-links">
-        <a href="#features">FUNCIONES</a>
-        <a href="#preview">VISTA PREVIA</a>
-        <a href="https://github.com/andyechc/makp-landing" target="_blank" rel="noopener">GITHUB ↗</a>
+        <a href="#features" data-i18n="nav_features">FUNCIONES</a>
+        <a href="#preview" data-i18n="nav_preview">VISTA PREVIA</a>
       </div>
-      <a class="nav-cta" href="#download">DESCARGAR</a>
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
     </div>
   </nav>
 
-  <div id="private-banner" class="banner" hidden>
-    <span class="banner-dot"></span>
-    <span>AÚN NO HAY RELEASE PÚBLICA. SUBE TU PRIMER DMG PARA ACTIVAR LA DESCARGA DIRECTA.</span>
-    <a href="https://github.com/andyechc/makp-landing/releases" target="_blank">VER RELEASES →</a>
-  </div>
-
-  <!-- HERO: uppercase, caret centered, buttons to right, no description, no Ver en GitHub -->
   <header class="hero" id="top">
     <div class="hero-inner">
       <div class="hero-logo-wrap reveal" data-delay="0">
@@ -60,36 +55,32 @@
         <img src="assets/icon.png" alt="MAKP logo" class="hero-logo" />
       </div>
 
-      <div class="eyebrow reveal" data-delay="80">
-        <span class="eyebrow-dot"></span>
-        <span>NATIVE • SWIFTUI • LIQUID GLASS • VLCKIT</span>
-        <span class="eyebrow-pulse"></span>
+      <div class="hero-title-wrap reveal" data-delay="120">
+        <h1 class="hero-title">
+          <span class="hero-makp">MAKP</span>
+          <span class="hero-rotor"><span data-i18n="hero_before">A </span><span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span><span data-i18n="hero_after"> PLAYER FOR MACOS</span></span>
+        </h1>
       </div>
 
-      <!-- Main row: title left, CTA right -->
-      <div class="hero-main reveal" data-delay="160">
-        <h1 class="hero-title">
-          <span class="hero-makp">MAKP:</span>
-          <span class="hero-rotor">A <span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span> PLAYER FOR MACOS</span>
-        </h1>
-        <div class="hero-cta" id="download">
-          <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
-            <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="btn-label">DESCARGAR</span>
-            <span class="btn-sub">DMG • 1.1</span>
-          </a>
-          <div class="hero-cta-meta">
-            <span id="release-info">DETECTANDO ÚLTIMO RELEASE…</span>
-          </div>
+      <div class="hero-cta-wrap reveal" data-delay="200" id="download">
+        <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
+          <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="btn-label" data-i18n="download">DESCARGAR</span>
+          <span class="btn-sub">DMG • 1.1</span>
+        </a>
+        <div class="hero-cta-meta">
+          <span id="release-info" data-i18n="release_checking">DETECTANDO ÚLTIMO RELEASE…</span>
         </div>
       </div>
 
       <div class="hero-meta reveal" data-delay="260">
-        <span class="meta-item"><strong>MACOS 26.5+</strong> • APPLE SILICON & INTEL</span>
-        <span class="meta-dot"></span>
-        <span class="meta-item">SIN SANDBOX • SIN TELEMETRÍA</span>
+        <span class="meta-item coming-soon" data-i18n="coming_soon">COMING SOON — WINDOWS</span>
       </div>
 
+      <div class="scroll-hint reveal" data-delay="300" aria-hidden="true">
+        <span>SCROLL</span>
+        <i></i>
+      </div>
     </div>
 
     <div class="marquee reveal" data-delay="380" aria-label="Formatos soportados">
@@ -116,19 +107,14 @@
         <span class="fmt">WEBM</span>
       </div>
     </div>
-
-    <div class="scroll-hint" aria-hidden="true">
-      <span>SCROLL</span>
-      <i></i>
-    </div>
   </header>
 
   <!-- PREVIEW PLACEHOLDER -->
   <section id="preview" class="preview">
     <div class="container">
       <div class="section-head reveal">
-        <h2>VISTA PREVIA</h2>
-        <p>SCREENSHOT REAL DE LA APP — PRÓXIMAMENTE</p>
+        <h2 data-i18n="preview_title">VISTA PREVIA</h2>
+        <p data-i18n="preview_sub">SCREENSHOT REAL DE LA APP — PRÓXIMAMENTE</p>
       </div>
       <div class="preview-placeholder reveal" data-delay="80">
         <div class="placeholder-frame">
@@ -139,8 +125,8 @@
           </div>
           <div class="placeholder-body">
             <div class="placeholder-icon">🖼️</div>
-            <h3>SCREENSHOT REAL PRÓXIMAMENTE</h3>
-            <p>Aquí irá una captura real de MAKP en macOS 26 Tahoe<br/>con Liquid Glass, sidebar y player.</p>
+            <h3 data-i18n="preview_ph_title">SCREENSHOT REAL PRÓXIMAMENTE</h3>
+            <p data-i18n="preview_ph_body">Aquí irá una captura real de MAKP en macOS 26 Tahoe<br/>con Liquid Glass, sidebar y player.</p>
             <div class="placeholder-meta">
               <span>16:10 • 2560×1600 • @2x</span>
             </div>
@@ -151,49 +137,37 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- FEATURES — marketing, no técnico, iconos SVG -->
   <section id="features" class="section">
     <div class="container">
       <div class="section-head reveal">
-        <h2>DISEÑADO PARA VER, NO PARA CONFIGURAR</h2>
-        <p>TODO LO QUE ESPERAS DE UN GESTOR + REPRODUCTOR NATIVO, SIN ELECTRON NI PLUGINS RAROS.</p>
+        <h2 data-i18n="features_title">PENSADO PARA COLECCIONES REALES</h2>
+        <p data-i18n="features_sub">NO PARA DEMOS. PARA TERAS DE VÍDEO QUE YA TIENES.</p>
       </div>
       <div class="features">
-        <div class="f-card reveal" data-delay="0"><div class="f-icon">🗂️</div><h3>NAVEGACIÓN REAL</h3><p>SIDEBAR CON VOLÚMENES APFS/EXFAT, BREADCRUMBS, LISTA Y GRID, BÚSQUEDA <code>⌘F</code> INSTANTÁNEA Y FLECHAS.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="80"><div class="f-icon">👁️</div><h3>HOVER PREVIEW</h3><p>THUMBNAILS AL PASAR, DURACIÓN Y METADATA SIN ABRIR. CACHE INTELIGENTE PARA MILES DE ARCHIVOS.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="160"><div class="f-icon">▶️</div><h3>MOTOR DUAL</h3><p><strong>AVFOUNDATION</strong> POR DEFECTO (HW) + <strong>VLCKIT</strong> AUTO PARA MKV/AVI/WMV/WEBM.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="0"><div class="f-icon">🎞️</div><h3>PLAYLIST INTELIGENTE</h3><p>RESUME MODAL, “CONTINUAR DONDE LO DEJASTE”, SIDEBAR DE PLAYLIST Y SELECTOR DE AUDIO/SUBS.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="80"><div class="f-icon">✨</div><h3>LIQUID GLASS</h3><p>TOOLBARS CON MATERIAL, BLUR 20PX, SATURACIÓN Y ESTADOS HOVER DE MACOS 26.</p><span class="f-grad"></span></div>
-        <div class="f-card reveal" data-delay="160"><div class="f-icon">⌨️</div><h3>ATAJOS QUE IMPORTAN</h3><p>PLAY/PAUSE, SEEK ±10S, VOLUMEN, FULLSCREEN, NEXT/PREV — TODO DESDE TECLADO.</p><span class="f-grad"></span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REQUISITOS (sin instalar en 10s) -->
-  <section class="section requirements">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>REQUISITOS</h2>
-        <p>LO MÍNIMO PARA QUE VUELE.</p>
-      </div>
-      <div class="req-grid reveal" data-delay="80">
-        <div class="req-box">
-          <h4>REQUISITOS DEL SISTEMA</h4>
-          <ul>
-            <li>MACOS 26.5 TAHOE O SUPERIOR</li>
-            <li>APPLE SILICON & INTEL — UNIVERSAL CON <code>--UNIVERSAL</code></li>
-            <li>SIN SANDBOX, ACCESO COMPLETO A DISCOS EXTERNOS</li>
-          </ul>
-          <p class="small">PARA EVITAR “UNIDENTIFIED DEVELOPER” FIRMA CON TU <code>DEVELOPMENT_TEAM</code> Y NOTARIZA CON <code>NOTARYTOOL</code>. WORKFLOW LISTO EN <code>SCRIPTS/CREATE-DMG.SH</code>.</p>
+        <div class="f-card reveal" data-delay="0">
+          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 012-2h5l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M9 13h6"/><path d="M9 17h6"/></svg></div>
+          <h3 data-i18n="feat1_title">TU DISCO, TU BIBLIOTECA</h3>
+          <p data-i18n="feat1_desc">SIN IMPORTAR, SIN DUPLICAR, SIN ESPERAR. ABRE Y NAVEGA TUS CARPETAS TAL CUAL ESTÁN.</p>
+          <span class="f-grad"></span>
         </div>
-        <div class="req-box">
-          <h4>FORMATOS SOPORTADOS</h4>
-          <ul>
-            <li><strong>HW (AVFOUNDATION):</strong> MP4, M4V, MOV</li>
-            <li><strong>VLC (AUTOMÁTICO):</strong> MKV, AVI, WMV, FLV, WEBM, MPG, TS, VOB, 3GP</li>
-            <li>DETECCIÓN AUTOMÁTICA — SIN CONFIGURACIÓN</li>
-          </ul>
-          <p class="small">MKV ES EL FOCO PRINCIPAL: OPTIMIZADO PARA REPRODUCCIÓN FLUIDA Y SEEK INSTANTÁNEO.</p>
+        <div class="f-card reveal" data-delay="80">
+          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div>
+          <h3 data-i18n="feat2_title">MKV SIN PEROS</h3>
+          <p data-i18n="feat2_desc">EL FORMATO QUE TODOS EVITAN ES NUESTRO PUNTO DE PARTIDA. SIN CONVERTIR, SIN PLUGINS.</p>
+          <span class="f-grad"></span>
+        </div>
+        <div class="f-card reveal" data-delay="160">
+          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+          <h3 data-i18n="feat3_title">NATIVO HASTA LA MÉDULA</h3>
+          <p data-i18n="feat3_desc">SIN ELECTRON. ARRANCA EN MILISEGUNDOS, FLUIDO CON MILES DE ARCHIVOS, SE SIENTE MACOS.</p>
+          <span class="f-grad"></span>
+        </div>
+        <div class="f-card reveal" data-delay="0">
+          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 5-3.5 7.5-7 8-3.5-.5-7-3-7-8V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3 data-i18n="feat4_title">PRIVADO POR DISEÑO</h3>
+          <p data-i18n="feat4_desc">SIN CUENTA, SIN NUBE, SIN TELEMETRÍA. TU COLECCIÓN NO SALE DE TU MAC.</p>
+          <span class="f-grad"></span>
         </div>
       </div>
     </div>
@@ -203,21 +177,18 @@
   <section class="cta">
     <div class="cta-bg" data-parallax="0.04"></div>
     <div class="container cta-inner reveal">
-      <div class="cta-badge">⚡ PESO LIGERO • ARRANQUE INSTANTÁNEO</div>
-      <h2>¿LISTO PARA PROBARLO?</h2>
-      <p>TU BIBLIOTECA TAL CUAL ESTÁ EN DISCO. SIN IMPORTAR, SIN DUPLICAR.</p>
-      <a id="download-btn2" class="btn btn-primary large" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
+      <h2 data-i18n="cta_title">¿LISTO PARA PROBARLO?</h2>
+      <a id="download-btn2" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
         <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        DESCARGAR
+        <span class="btn-label" data-i18n="download">DESCARGAR</span>
+        <span class="btn-sub">DMG • 1.1</span>
       </a>
-      <p class="small cta-small">TAMBIÉN EN <a href="https://github.com/andyechc/makp-landing/releases/latest" target="_blank">ÚLTIMA RELEASE</a> O COMPILANDO EN XCODE 26.5</p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container foot">
-      <span>© 2026 ANDYECHC • MAKP • <a href="https://github.com/andyechc/makp-landing">MAKP-LANDING</a> • <a href="https://github.com/andyechc/makp">SOURCE PRIVADO</a></span>
-      <span>SWIFTUI + VLCKIT • LIQUID GLASS</span>
+      <span>© 2026 ANDYECHC • MAKP • <a href="https://github.com/andyechc/makp-landing">MAKP-LANDING</a></span>
     </div>
   </footer>
 
