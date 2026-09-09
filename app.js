@@ -425,6 +425,62 @@
   });
   applyI18n(currentLang);
 
+  // --- Easter Eggs: Matroska + Mac (Makp = Mac + Matroska) ---
+  const egg = document.getElementById('matroskaEgg');
+  const eggClose = document.getElementById('eggClose');
+  function openEgg(){
+    if(!egg) return;
+    egg.removeAttribute('hidden');
+    document.body.style.overflow='hidden';
+  }
+  function closeEgg(){
+    if(!egg) return;
+    egg.setAttribute('hidden','');
+    document.body.style.overflow='';
+  }
+  if(eggClose) eggClose.addEventListener('click', closeEgg);
+  egg?.querySelector('.egg-backdrop')?.addEventListener('click', closeEgg);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && egg && !egg.hasAttribute('hidden')) closeEgg(); });
+  let logoClicks=0, logoTimer;
+  document.querySelectorAll('.hero-logo, #navLogo img').forEach(el=>{
+    el.style.cursor='pointer';
+    el.addEventListener('click', ()=>{
+      logoClicks++; clearTimeout(logoTimer); logoTimer=setTimeout(()=>logoClicks=0,1200);
+      if(logoClicks>=5){
+        logoClicks=0;
+        openEgg();
+        console.log('%c Matroska! ', 'background:linear-gradient(90deg,#BF59FF,#9933E6);color:#fff;padding:6px 12px;border-radius:999px;font-weight:800');
+      }
+    });
+  });
+  let keyBuffer="";
+  document.addEventListener('keydown', e=>{
+    if(e.key.length===1) keyBuffer+=e.key.toLowerCase();
+    else if(e.key==='Backspace') keyBuffer=keyBuffer.slice(0,-1);
+    keyBuffer=keyBuffer.slice(-14);
+    if(keyBuffer.includes('matroska')){
+      openEgg(); keyBuffer="";
+      console.log('%c Mac + Matroska = Makp ', 'background:linear-gradient(90deg,#BF59FF,#7C3AED);color:#fff;padding:4px 10px;border-radius:8px;font-weight:700');
+    } else if(keyBuffer.endsWith('makp')){
+      document.querySelector('.hero-makp')?.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:320});
+      openEgg(); keyBuffer="";
+    } else if(keyBuffer.endsWith('mac')){
+      // subtle hint, don't auto open to avoid spam
+      const m = document.querySelector('.hero-makp');
+      if(m) m.animate([{textShadow:'0 0 0 transparent'},{textShadow:'0 0 16px rgba(191,89,255,0.6)'},{textShadow:'0 0 0 transparent'}],{duration:600});
+    }
+  });
+  const typedWrapEl = document.querySelector('.typed-wrap');
+  if(typedWrapEl){
+    typedWrapEl.title='Matryoshka Video — MKV';
+    typedWrapEl.style.cursor='help';
+    typedWrapEl.addEventListener('click', ()=>{
+      if(typedEl && typedEl.textContent==='MKV') openEgg();
+    });
+  }
+  console.log('%c Makp easter egg: escribe "matroska" / "makp" o haz 5 clicks en el logo ', 'color:#BF59FF;font-weight:700');
+  console.log('%c Makp = Mac (macOS) + Matroska (MKV) — Matryoshka dolls inside dolls ', 'color:#A1A1AA;font-style:italic');
+
   // --- Reduce motion respect ---
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     document.querySelectorAll('.reveal').forEach(el=> el.classList.add('is-visible'));

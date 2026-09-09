@@ -44,10 +44,10 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="lang-menu" role="listbox" hidden id="langMenu">
-          <button role="option" data-lang="en">EN — English</button>
-          <button role="option" data-lang="es">ES — Español</button>
-          <button role="option" data-lang="zh">中文 — Chinese</button>
-          <button role="option" data-lang="ru">RU — Русский</button>
+          <button role="option" class="lang-btn" data-lang="en">EN — English</button>
+          <button role="option" class="lang-btn" data-lang="es">ES — Español</button>
+          <button role="option" class="lang-btn" data-lang="zh">中文 — Chinese</button>
+          <button role="option" class="lang-btn" data-lang="ru">RU — Русский</button>
         </div>
       </div>
     </div>
@@ -198,6 +198,23 @@
       <span>© 2026 ANDYECHC • MAKP • <a href="https://github.com/andyechc/makp-landing">MAKP-LANDING</a></span>
     </div>
   </footer>
+
+  <!-- Easter Egg: Matroska + Mac -->
+  <div id="matroskaEgg" class="egg-overlay" hidden>
+    <div class="egg-backdrop"></div>
+    <div class="egg-content">
+      <div class="matroska-stack" aria-hidden="true">
+        <div class="doll doll-1"><span class="doll-face">◉‿◉</span><span class="doll-label">MAC</span></div>
+        <div class="doll doll-2"><span class="doll-face">◕‿◕</span><span class="doll-label">MKV</span></div>
+        <div class="doll doll-3"><span class="doll-face">｡‿｡</span><span class="doll-label">MAKP</span></div>
+        <div class="doll doll-4"><span class="doll-face">▶</span></div>
+      </div>
+      <h3>Mac + Matroska <span class="egg-eq">=</span> Makp</h3>
+      <p class="egg-sub">Matryoshka dolls inside dolls — like tracks inside an MKV.</p>
+      <p class="egg-hint">Psst… prueba escribir <code>matroska</code>, <code>makp</code> o <code>mac</code> en el teclado.</p>
+      <button class="egg-close" id="eggClose">Cerrar ✕</button>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

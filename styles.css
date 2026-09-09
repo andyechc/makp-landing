@@ -287,6 +287,33 @@ a:hover{text-decoration:underline}
 .cta-small{font-size:12px;color:var(--muted-2);margin-top:14px}
 .cta-small a{color:var(--purple-light)}
 
+/* Easter Egg — Matroska + Mac */
+.egg-overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px}
+.egg-overlay[hidden]{display:none}
+.egg-backdrop{position:absolute;inset:0;background:rgba(7,7,11,0.75);backdrop-filter:blur(12px) saturate(1.2)}
+.egg-content{position:relative;z-index:1;max-width:420px;width:100%;background:linear-gradient(135deg, rgba(26,16,48,0.9), rgba(14,10,28,0.96));border:1px solid rgba(191,89,255,0.15);border-radius:22px;padding:28px 24px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04) inset;backdrop-filter:blur(16px);animation:eggIn .45s cubic-bezier(.16,1,.3,1)}
+@keyframes eggIn{from{opacity:0;transform:translateY(12px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.matroska-stack{position:relative;height:120px;display:flex;align-items:flex-end;justify-content:center;gap:-12px;margin:8px 0 18px}
+.doll{position:relative;border-radius:50% 50% 42% 42% / 58% 58% 42% 42%;border:1px solid rgba(255,255,255,0.12);display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12);transform-origin:bottom center;animation:dollPop .5s cubic-bezier(.16,1,.3,1) backwards}
+.doll-1{width:92px;height:108px;background:linear-gradient(135deg,#BF59FF,#9933E6);z-index:1;animation-delay:.05s}
+.doll-2{width:74px;height:88px;background:linear-gradient(135deg,#A78BFA,#7C3AED);margin-left:-14px;z-index:2;animation-delay:.15s}
+.doll-3{width:58px;height:68px;background:linear-gradient(135deg,#F0ABFC,#C084FC);margin-left:-12px;z-index:3;animation-delay:.25s}
+.doll-4{width:38px;height:44px;background:linear-gradient(135deg,#FDE68A,#F59E0B);margin-left:-10px;z-index:4;animation-delay:.35s;color:#1a1030}
+@keyframes dollPop{from{opacity:0;transform:translateY(16px) scale(0.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+.doll-face{font-size:11px;line-height:1}
+.doll-label{position:absolute;bottom:10px;font-family:JetBrains Mono,monospace;font-size:7px;font-weight:800;letter-spacing:0.08em;color:rgba(255,255,255,0.9)}
+.doll-4 .doll-face{font-size:12px;color:#1a1030}
+.egg-content h3{margin:0 0 6px;font-size:18px;letter-spacing:-0.02em}
+.egg-eq{color:var(--purple-light)}
+.egg-sub{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.egg-hint{margin:14px 0 0;font-size:11px;color:var(--muted-2);background:rgba(255,255,255,0.04);border:1px solid var(--card-border);padding:8px 10px;border-radius:10px}
+.egg-hint code{font-family:JetBrains Mono,monospace;background:rgba(191,89,255,0.12);border:1px solid rgba(191,89,255,0.2);padding:1px 4px;border-radius:4px;color:#E9D5FF}
+.egg-close{margin-top:16px;appearance:none;border:1px solid var(--card-border);background:rgba(255,255,255,0.06);color:var(--text);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:all .15s}
+.egg-close:hover{background:rgba(255,255,255,0.1)}
+.typed.mkv{filter:drop-shadow(0 0 8px rgba(191,89,255,0.4))}
+.typed-wrap{cursor:help}
+.typed-wrap:hover{box-shadow:0 6px 20px rgba(191,89,255,0.3)}
+
 /* Footer */
 .footer{padding:24px 0;background:rgba(7,7,11,0.8);border-top:1px solid var(--card-border);font-size:12px;color:var(--muted-2);backdrop-filter:blur(10px)}
 .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
