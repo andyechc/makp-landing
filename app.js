@@ -467,21 +467,23 @@
   document.querySelectorAll('.hero-logo-wrap, .hero-logo, #navLogo, #navLogo img, .brand').forEach(el=>{
     el.style.cursor='pointer';
     el.addEventListener('click', (e)=>{
-      // allow brand link to still navigate if not easter egg
       if(el.classList.contains('brand') && logoClicks<2) return;
       e.preventDefault(); e.stopPropagation();
       logoClicks++; clearTimeout(logoTimer); logoTimer=setTimeout(()=>logoClicks=0,1500);
-      el.animate([{transform:'scale(1)'},{transform:'scale(0.94)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:220});
-      if(logoClicks===2){
-        const hint=document.createElement('div');
-        hint.textContent='One more click… 👉';
-        hint.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(16,10,30,0.9);border:1px solid rgba(191,89,255,0.2);color:#fff;padding:8px 14px;border-radius:999px;font-size:12px;backdrop-filter:blur(10px);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.3)';
-        document.body.appendChild(hint); setTimeout(()=>hint.remove(), 1300);
-      }
+      // tremble indicating interaction
+      el.animate([
+        {transform:'translateX(0)'},
+        {transform:'translateX(-4px)'},
+        {transform:'translateX(4px)'},
+        {transform:'translateX(-3px)'},
+        {transform:'translateX(3px)'},
+        {transform:'translateX(0)'}
+      ],{duration:320, easing:'ease-out'});
+      el.animate([{transform:'scale(1)'},{transform:'scale(0.97)'},{transform:'scale(1)'}],{duration:220});
       if(logoClicks>=3){
         logoClicks=0;
         openEgg();
-        console.log('%c Matroska! Mac + Matroska = Makp ', 'background:linear-gradient(90deg,#BF59FF,#9933E6);color:#fff;padding:6px 12px;border-radius:999px;font-weight:800');
+        console.log('%c Matryoshka + Player = Makp — Makp = Mac + Player ', 'background:linear-gradient(90deg,#BF59FF,#9933E6);color:#fff;padding:6px 12px;border-radius:999px;font-weight:800');
       }
     });
   });
@@ -490,14 +492,13 @@
     if(e.key.length===1) keyBuffer+=e.key.toLowerCase();
     else if(e.key==='Backspace') keyBuffer=keyBuffer.slice(0,-1);
     keyBuffer=keyBuffer.slice(-14);
-    if(keyBuffer.includes('matroska')){
+    if(keyBuffer.includes('matryoshka')){
       openEgg(); keyBuffer="";
-      console.log('%c Mac + Matroska = Makp ', 'background:linear-gradient(90deg,#BF59FF,#7C3AED);color:#fff;padding:4px 10px;border-radius:8px;font-weight:700');
+      console.log('%c Matryoshka + Player = Makp — Makp = Mac + Player ', 'background:linear-gradient(90deg,#BF59FF,#7C3AED);color:#fff;padding:4px 10px;border-radius:8px;font-weight:700');
     } else if(keyBuffer.endsWith('makp')){
       document.querySelector('.hero-makp')?.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:320});
       openEgg(); keyBuffer="";
     } else if(keyBuffer.endsWith('mac')){
-      // subtle hint, don't auto open to avoid spam
       const m = document.querySelector('.hero-makp');
       if(m) m.animate([{textShadow:'0 0 0 transparent'},{textShadow:'0 0 16px rgba(191,89,255,0.6)'},{textShadow:'0 0 0 transparent'}],{duration:600});
     }
@@ -508,8 +509,8 @@
     typedWrapEl.style.cursor='pointer';
     typedWrapEl.addEventListener('click', ()=> openEgg());
   }
-  console.log('%c Makp easter egg: escribe "matroska" / "makp" o haz 5 clicks en el logo ', 'color:#BF59FF;font-weight:700');
-  console.log('%c Makp = Mac (macOS) + Matroska (MKV) — Matryoshka dolls inside dolls ', 'color:#A1A1AA;font-style:italic');
+  console.log('%c Makp easter egg: escribe "matryoshka" / "makp" o haz 3 clicks en el logo ', 'color:#BF59FF;font-weight:700');
+  console.log('%c Matryoshka + Player = Makp — Makp = Mac + Player ', 'color:#A1A1AA;font-style:italic');
 
   // --- Reduce motion respect ---
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
