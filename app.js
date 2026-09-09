@@ -373,6 +373,28 @@
     window.addEventListener('scroll', onNavScroll, {passive:true});
     onNavScroll();
   }
+  // --- Nav toggle (mobile) ---
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const open = navToggle.getAttribute('aria-expanded')==='true';
+      navToggle.setAttribute('aria-expanded', String(!open));
+      navLinks.classList.toggle('open', !open);
+      if(!open) navLinks.querySelector('a')?.focus();
+    });
+    navLinks.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
+      navToggle.setAttribute('aria-expanded','false');
+      navLinks.classList.remove('open');
+    }));
+    document.addEventListener('click', (e)=>{
+      if(!navToggle.contains(e.target) && !navLinks.contains(e.target)){
+        navToggle.setAttribute('aria-expanded','false');
+        navLinks.classList.remove('open');
+      }
+    });
+  }
   // --- Header logo: hidden until hero logo leaves viewport (fade) ---
   const navLogo = document.getElementById('navLogo');
   const heroLogoWrap = document.querySelector('.hero-logo-wrap');
@@ -442,14 +464,24 @@
   egg?.querySelector('.egg-backdrop')?.addEventListener('click', closeEgg);
   document.addEventListener('keydown', e=>{ if(e.key==='Escape' && egg && !egg.hasAttribute('hidden')) closeEgg(); });
   let logoClicks=0, logoTimer;
-  document.querySelectorAll('.hero-logo, #navLogo img').forEach(el=>{
+  document.querySelectorAll('.hero-logo-wrap, .hero-logo, #navLogo, #navLogo img, .brand').forEach(el=>{
     el.style.cursor='pointer';
-    el.addEventListener('click', ()=>{
-      logoClicks++; clearTimeout(logoTimer); logoTimer=setTimeout(()=>logoClicks=0,1200);
-      if(logoClicks>=5){
+    el.addEventListener('click', (e)=>{
+      // allow brand link to still navigate if not easter egg
+      if(el.classList.contains('brand') && logoClicks<2) return;
+      e.preventDefault(); e.stopPropagation();
+      logoClicks++; clearTimeout(logoTimer); logoTimer=setTimeout(()=>logoClicks=0,1500);
+      el.animate([{transform:'scale(1)'},{transform:'scale(0.94)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:220});
+      if(logoClicks===2){
+        const hint=document.createElement('div');
+        hint.textContent='One more click… 👉';
+        hint.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(16,10,30,0.9);border:1px solid rgba(191,89,255,0.2);color:#fff;padding:8px 14px;border-radius:999px;font-size:12px;backdrop-filter:blur(10px);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.3)';
+        document.body.appendChild(hint); setTimeout(()=>hint.remove(), 1300);
+      }
+      if(logoClicks>=3){
         logoClicks=0;
         openEgg();
-        console.log('%c Matroska! ', 'background:linear-gradient(90deg,#BF59FF,#9933E6);color:#fff;padding:6px 12px;border-radius:999px;font-weight:800');
+        console.log('%c Matroska! Mac + Matroska = Makp ', 'background:linear-gradient(90deg,#BF59FF,#9933E6);color:#fff;padding:6px 12px;border-radius:999px;font-weight:800');
       }
     });
   });
@@ -472,11 +504,9 @@
   });
   const typedWrapEl = document.querySelector('.typed-wrap');
   if(typedWrapEl){
-    typedWrapEl.title='Matryoshka Video — MKV';
-    typedWrapEl.style.cursor='help';
-    typedWrapEl.addEventListener('click', ()=>{
-      if(typedEl && typedEl.textContent==='MKV') openEgg();
-    });
+    typedWrapEl.title='Matryoshka Video — click me';
+    typedWrapEl.style.cursor='pointer';
+    typedWrapEl.addEventListener('click', ()=> openEgg());
   }
   console.log('%c Makp easter egg: escribe "matroska" / "makp" o haz 5 clicks en el logo ', 'color:#BF59FF;font-weight:700');
   console.log('%c Makp = Mac (macOS) + Matroska (MKV) — Matryoshka dolls inside dolls ', 'color:#A1A1AA;font-style:italic');

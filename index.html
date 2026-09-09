@@ -31,34 +31,39 @@
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a class="brand" href="#">
-        <span class="brand-mark is-hidden" id="navLogo"><img src="assets/icon.png" alt="MAKP" /></span>
+      <a class="brand" href="#" title="Makp = Mac + Matroska">
+        <span class="brand-mark is-hidden" id="navLogo"><img src="assets/icon.png" alt="MAKP" title="Click me" /></span>
       </a>
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
         <a href="#features" data-i18n="nav_features">Funciones</a>
         <a href="#preview" data-i18n="nav_preview">Vista previa</a>
       </div>
-      <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-current" aria-haspopup="listbox" aria-expanded="false" id="langCurrent">
-          <span class="lang-current-text">ES</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="lang-menu" role="listbox" hidden id="langMenu">
-          <button role="option" class="lang-btn" data-lang="en">EN — English</button>
-          <button role="option" class="lang-btn" data-lang="es">ES — Español</button>
-          <button role="option" class="lang-btn" data-lang="zh">中文 — Chinese</button>
-          <button role="option" class="lang-btn" data-lang="ru">RU — Русский</button>
+      <div class="nav-actions">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-current" aria-haspopup="listbox" aria-expanded="false" id="langCurrent">
+            <span class="lang-current-text">ES</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lang-menu" role="listbox" hidden id="langMenu">
+            <button role="option" class="lang-btn" data-lang="en">EN — English</button>
+            <button role="option" class="lang-btn" data-lang="es">ES — Español</button>
+            <button role="option" class="lang-btn" data-lang="zh">中文 — Chinese</button>
+            <button role="option" class="lang-btn" data-lang="ru">RU — Русский</button>
+          </div>
         </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
 
   <header class="hero" id="top">
     <div class="hero-inner">
-      <div class="hero-logo-wrap reveal" data-delay="0">
+      <div class="hero-logo-wrap reveal" data-delay="0" title="Psst… click 3 times">
         <div class="logo-glow"></div>
         <div class="logo-ring"></div>
-        <img src="assets/icon.png" alt="MAKP logo" class="hero-logo" />
+        <img src="assets/icon.png" alt="MAKP logo" class="hero-logo" title="Psst… click me 3 times" />
       </div>
 
       <div class="hero-main-row">
