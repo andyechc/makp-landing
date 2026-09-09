@@ -32,17 +32,23 @@
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a class="brand" href="#">
-        <span class="brand-mark"><img src="assets/icon.png" alt="MAKP" /></span>
+        <span class="brand-mark is-hidden" id="navLogo"><img src="assets/icon.png" alt="MAKP" /></span>
       </a>
       <div class="nav-links">
-        <a href="#features" data-i18n="nav_features">FUNCIONES</a>
-        <a href="#preview" data-i18n="nav_preview">VISTA PREVIA</a>
+        <a href="#features" data-i18n="nav_features">Funciones</a>
+        <a href="#preview" data-i18n="nav_preview">Vista previa</a>
       </div>
-      <div class="lang-switcher" role="group" aria-label="Language">
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn active" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="zh">中文</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-current" aria-haspopup="listbox" aria-expanded="false" id="langCurrent">
+          <span class="lang-current-text">ES</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-menu" role="listbox" hidden id="langMenu">
+          <button role="option" data-lang="en">EN — English</button>
+          <button role="option" data-lang="es">ES — Español</button>
+          <button role="option" data-lang="zh">中文 — Chinese</button>
+          <button role="option" data-lang="ru">RU — Русский</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -55,21 +61,22 @@
         <img src="assets/icon.png" alt="MAKP logo" class="hero-logo" />
       </div>
 
-      <div class="hero-title-wrap reveal" data-delay="120">
-        <h1 class="hero-title">
-          <span class="hero-makp">MAKP</span>
-          <span class="hero-rotor"><span data-i18n="hero_before">A </span><span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span><span data-i18n="hero_after"> PLAYER FOR MACOS</span></span>
-        </h1>
-      </div>
-
-      <div class="hero-cta-wrap reveal" data-delay="200" id="download">
-        <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
-          <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="btn-label" data-i18n="download">DESCARGAR</span>
-          <span class="btn-sub">DMG • 1.1</span>
-        </a>
-        <div class="hero-cta-meta">
-          <span id="release-info" data-i18n="release_checking">DETECTANDO ÚLTIMO RELEASE…</span>
+      <div class="hero-main-row">
+        <div class="hero-title-wrap reveal" data-delay="120">
+          <h1 class="hero-title">
+            <span class="hero-makp">MAKP</span>
+            <span class="hero-rotor"><span data-i18n="hero_before">A </span><span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span><span data-i18n="hero_after"> PLAYER FOR MACOS</span></span>
+          </h1>
+        </div>
+        <div class="hero-cta-wrap reveal" data-delay="200" id="download">
+          <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
+            <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="btn-label" data-i18n="download">DESCARGAR</span>
+            <span class="btn-sub">DMG • 1.1</span>
+          </a>
+          <div class="hero-cta-meta">
+            <span id="release-info" data-i18n="release_checking">DETECTANDO ÚLTIMO RELEASE…</span>
+          </div>
         </div>
       </div>
 
@@ -113,8 +120,8 @@
   <section id="preview" class="preview">
     <div class="container">
       <div class="section-head reveal">
-        <h2 data-i18n="preview_title">VISTA PREVIA</h2>
-        <p data-i18n="preview_sub">SCREENSHOT REAL DE LA APP — PRÓXIMAMENTE</p>
+        <h2 data-i18n="preview_title">Vista previa</h2>
+        <p data-i18n="preview_sub">Screenshot real de la app — Próximamente</p>
       </div>
       <div class="preview-placeholder reveal" data-delay="80">
         <div class="placeholder-frame">
@@ -125,7 +132,7 @@
           </div>
           <div class="placeholder-body">
             <div class="placeholder-icon">🖼️</div>
-            <h3 data-i18n="preview_ph_title">SCREENSHOT REAL PRÓXIMAMENTE</h3>
+            <h3 data-i18n="preview_ph_title">Screenshot real próximamente</h3>
             <p data-i18n="preview_ph_body">Aquí irá una captura real de MAKP en macOS 26 Tahoe<br/>con Liquid Glass, sidebar y player.</p>
             <div class="placeholder-meta">
               <span>16:10 • 2560×1600 • @2x</span>
@@ -137,36 +144,36 @@
     </div>
   </section>
 
-  <!-- FEATURES — marketing, no técnico, iconos SVG -->
+  <!-- FEATURES — serio, MKV destacado -->
   <section id="features" class="section">
     <div class="container">
       <div class="section-head reveal">
-        <h2 data-i18n="features_title">PENSADO PARA COLECCIONES REALES</h2>
-        <p data-i18n="features_sub">NO PARA DEMOS. PARA TERAS DE VÍDEO QUE YA TIENES.</p>
+        <h2 data-i18n="features_title">Pensado para colecciones reales</h2>
+        <p data-i18n="features_sub">Para quienes acumulan terabytes de vídeo y necesitan algo que simplemente funcione.</p>
       </div>
       <div class="features">
         <div class="f-card reveal" data-delay="0">
-          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 012-2h5l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M9 13h6"/><path d="M9 17h6"/></svg></div>
-          <h3 data-i18n="feat1_title">TU DISCO, TU BIBLIOTECA</h3>
-          <p data-i18n="feat1_desc">SIN IMPORTAR, SIN DUPLICAR, SIN ESPERAR. ABRE Y NAVEGA TUS CARPETAS TAL CUAL ESTÁN.</p>
+          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div>
+          <h3 data-i18n="feat1_title">MKV nativo en macOS</h3>
+          <p data-i18n="feat1_desc">En macOS muy pocos reproductores gestionan MKV correctamente. Makp lo reproduce de forma nativa, sin convertir ni instalar nada más.</p>
           <span class="f-grad"></span>
         </div>
         <div class="f-card reveal" data-delay="80">
-          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div>
-          <h3 data-i18n="feat2_title">MKV SIN PEROS</h3>
-          <p data-i18n="feat2_desc">EL FORMATO QUE TODOS EVITAN ES NUESTRO PUNTO DE PARTIDA. SIN CONVERTIR, SIN PLUGINS.</p>
+          <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 012-2h5l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M9 13h6"/><path d="M9 17h6"/></svg></div>
+          <h3 data-i18n="feat2_title">Tu biblioteca, intacta</h3>
+          <p data-i18n="feat2_desc">No importas ni duplicas. Navega directamente tus discos y carpetas, por grandes que sean.</p>
           <span class="f-grad"></span>
         </div>
         <div class="f-card reveal" data-delay="160">
           <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-          <h3 data-i18n="feat3_title">NATIVO HASTA LA MÉDULA</h3>
-          <p data-i18n="feat3_desc">SIN ELECTRON. ARRANCA EN MILISEGUNDOS, FLUIDO CON MILES DE ARCHIVOS, SE SIENTE MACOS.</p>
+          <h3 data-i18n="feat3_title">Rendimiento nativo</h3>
+          <p data-i18n="feat3_desc">Construido en SwiftUI para macOS. Arranque instantáneo y fluidez con miles de archivos.</p>
           <span class="f-grad"></span>
         </div>
         <div class="f-card reveal" data-delay="0">
           <div class="f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 5-3.5 7.5-7 8-3.5-.5-7-3-7-8V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3 data-i18n="feat4_title">PRIVADO POR DISEÑO</h3>
-          <p data-i18n="feat4_desc">SIN CUENTA, SIN NUBE, SIN TELEMETRÍA. TU COLECCIÓN NO SALE DE TU MAC.</p>
+          <h3 data-i18n="feat4_title">Privado por defecto</h3>
+          <p data-i18n="feat4_desc">Sin cuenta, sin nube y sin telemetría. Tu colección permanece en tu Mac.</p>
           <span class="f-grad"></span>
         </div>
       </div>
@@ -177,7 +184,7 @@
   <section class="cta">
     <div class="cta-bg" data-parallax="0.04"></div>
     <div class="container cta-inner reveal">
-      <h2 data-i18n="cta_title">¿LISTO PARA PROBARLO?</h2>
+      <h2 data-i18n="cta_title">Comenzar</h2>
       <a id="download-btn2" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
         <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span class="btn-label" data-i18n="download">DESCARGAR</span>
