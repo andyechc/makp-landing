@@ -20,9 +20,10 @@
       release_soon: (ver) => `Coming soon: v${ver} — publish your first Release`,
       coming_soon: "COMING SOON — WINDOWS",
       preview_title: "Preview",
-      preview_sub: "Real app screenshot — Coming soon",
+      preview_sub: "MAKP in action — 49s · 720p · muted · hover preview",
       preview_ph_title: "Real screenshot coming soon",
       preview_ph_body: "A real capture of MAKP on macOS 26 Tahoe<br/>with Liquid Glass, sidebar and player will be here.",
+      preview_caption: 'Real recording • 3840×2156 → 1280×720 · 60 fps → 30 fps · 146 MB → 1.7 MB (H.264) / 2.5 MB (VP9) · No audio · <a href="assets/screen-preview-1080p.mp4" target="_blank" rel="noopener">View in 1080p</a>',
       features_title: "Built for real collections",
       features_sub: "Not for demos. For terabytes of video you already own.",
       feat1_title: "MKV, native on macOS",
@@ -49,9 +50,10 @@
       release_soon: (ver) => `Próximamente: v${ver} — publica tu primera Release`,
       coming_soon: "COMING SOON — WINDOWS",
       preview_title: "Vista previa",
-      preview_sub: "Screenshot real de la app — Próximamente",
+      preview_sub: "MAKP en acción — 49s · 720p · sin audio · hover para preview",
       preview_ph_title: "Screenshot real próximamente",
       preview_ph_body: "Aquí irá una captura real de MAKP en macOS 26 Tahoe<br/>con Liquid Glass, sidebar y player.",
+      preview_caption: 'Grabación real • 3840×2156 → 1280×720 · 60 fps → 30 fps · 146 MB → 1.7 MB (H.264) / 2.5 MB (VP9) · Sin audio · <a href="assets/screen-preview-1080p.mp4" target="_blank" rel="noopener">Ver en 1080p</a>',
       features_title: "Pensado para colecciones reales",
       features_sub: "Para quienes acumulan terabytes de vídeo y necesitan algo que simplemente funcione.",
       feat1_title: "MKV nativo en macOS",
@@ -78,9 +80,10 @@
       release_soon: (ver) => `即将推出：v${ver} — 发布你的首个 Release`,
       coming_soon: "即将推出 — WINDOWS 版本",
       preview_title: "预览",
-      preview_sub: "应用真实截图 — 敬请期待",
+      preview_sub: "MAKP 实操 — 49秒 · 720p · 静音 · 悬停预览",
       preview_ph_title: "真实截图即将上线",
       preview_ph_body: "此处将展示 MAKP 在 macOS 26 Tahoe 上的<br/>Liquid Glass 侧边栏与播放器真实截图。",
+      preview_caption: '真实录制 • 3840×2156 → 1280×720 · 60 fps → 30 fps · 146 MB → 1.7 MB (H.264) / 2.5 MB (VP9) · 无音频 · <a href="assets/screen-preview-1080p.mp4" target="_blank" rel="noopener">查看 1080p</a>',
       features_title: "为真实收藏而生",
       features_sub: "不是为了演示，而是为了你已拥有的 TB 级视频。",
       feat1_title: "MKV 原生支持",
@@ -107,9 +110,10 @@
       release_soon: (ver) => `Скоро: v${ver} — опубликуйте первый Release`,
       coming_soon: "Скоро — Windows",
       preview_title: "Превью",
-      preview_sub: "Реальный скриншот приложения — скоро",
+      preview_sub: "MAKP в действии — 49с · 720p · без звука · ховер превью",
       preview_ph_title: "Реальный скриншот скоро",
       preview_ph_body: "Здесь будет реальный скриншот MAKP на macOS 26 Tahoe<br/>с Liquid Glass, боковой панелью и плеером.",
+      preview_caption: 'Реальная запись • 3840×2156 → 1280×720 · 60 fps → 30 fps · 146 MB → 1.7 MB (H.264) / 2.5 MB (VP9) · Без звука · <a href="assets/screen-preview-1080p.mp4" target="_blank" rel="noopener">Смотреть в 1080p</a>',
       features_title: "Создан для реальных коллекций",
       features_sub: "Не для демо. Для терабайтов видео, которые у тебя уже есть.",
       feat1_title: "Твой диск — твоя библиотека",
@@ -142,8 +146,7 @@
       const key = el.getAttribute('data-i18n');
       const val = t[key];
       if(typeof val === 'string'){
-        // allow <br> in preview body
-        if(key.includes('body')) el.innerHTML = val;
+        if(key.includes('body') || key.includes('caption')) el.innerHTML = val;
         else el.textContent = val;
       }
     });
@@ -233,6 +236,33 @@
   }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
   reveals.forEach(el=> io.observe(el));
   // also stagger features cards via delay already set
+
+  // --- Preview video: lazy + pause offscreen (magia negra) ---
+  const previewVideo = document.getElementById('previewVideo');
+  if(previewVideo){
+    // solo cargar cuando entra en viewport
+    let videoLoaded = false;
+    const videoIO = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          if(!videoLoaded){
+            // ya tiene poster y preload metadata, forzar load
+            previewVideo.preload = 'auto';
+            videoLoaded = true;
+          }
+          previewVideo.play().catch(()=>{});
+        } else {
+          previewVideo.pause();
+        }
+      });
+    }, {threshold: 0.25});
+    videoIO.observe(previewVideo);
+    // click para toggle play/pause (además de controls)
+    previewVideo.addEventListener('click', ()=>{
+      if(previewVideo.paused) previewVideo.play().catch(()=>{});
+      else previewVideo.pause();
+    });
+  }
 
   // --- Parallax ---
   const parallaxEls = document.querySelectorAll('[data-parallax]');
