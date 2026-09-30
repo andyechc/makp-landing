@@ -18,6 +18,9 @@
       release_checking: "Checking latest release…",
       release_latest: (tag, date) => `Latest: ${tag} • ${date}`,
       release_soon: (ver) => `Coming soon: v${ver} — publish your first Release`,
+      trust_native: "macOS 26.5+",
+      trust_formats: "12 formats",
+      trust_private: "No account, no tracking",
       coming_soon: "COMING SOON — WINDOWS",
       preview_title: "Preview",
       preview_sub: "MAKP in action — 49s · 720p · muted · hover preview",
@@ -48,6 +51,9 @@
       release_checking: "Detectando último release…",
       release_latest: (tag, date) => `Última: ${tag} • ${date}`,
       release_soon: (ver) => `Próximamente: v${ver} — publica tu primera Release`,
+      trust_native: "macOS 26.5+",
+      trust_formats: "12 formatos",
+      trust_private: "Sin cuenta ni telemetría",
       coming_soon: "COMING SOON — WINDOWS",
       preview_title: "Vista previa",
       preview_sub: "MAKP en acción — 49s · 720p · sin audio · hover para preview",
@@ -78,6 +84,9 @@
       release_checking: "正在检测最新版本…",
       release_latest: (tag, date) => `最新：${tag} • ${date}`,
       release_soon: (ver) => `即将推出：v${ver} — 发布你的首个 Release`,
+      trust_native: "macOS 26.5+",
+      trust_formats: "12 种格式",
+      trust_private: "无需账号，无追踪",
       coming_soon: "即将推出 — WINDOWS 版本",
       preview_title: "预览",
       preview_sub: "MAKP 实操 — 49秒 · 720p · 静音 · 悬停预览",
@@ -108,6 +117,9 @@
       release_checking: "Проверка последнего релиза…",
       release_latest: (tag, date) => `Последний: ${tag} • ${date}`,
       release_soon: (ver) => `Скоро: v${ver} — опубликуйте первый Release`,
+      trust_native: "macOS 26.5+",
+      trust_formats: "12 форматов",
+      trust_private: "Без аккаунта и слежки",
       coming_soon: "Скоро — Windows",
       preview_title: "Превью",
       preview_sub: "MAKP в действии — 49с · 720p · без звука · ховер превью",
@@ -168,58 +180,62 @@
   // expose for release checker
   window.__makp_i18n = {translations, applyI18n, getLang:()=>currentLang};
 
-  // --- Typewriter MKV rotating ---
+  // --- Codec carousel: desplazamiento vertical en vez de typewriter ---
+  // Un solo elemento visible; cada cambio hace slide-up + fade (o slide-down al
+  // salir). MKV se mantiene más tiempo porque es el formato diferenciador.
   const codecs = ["MKV","MP4","MPG","AVI","MOV","WMV","FLV","WEBM","M4V","TS","VOB","3GP"];
+  const HOLD = 2200;   // tiempo visible
+  const SLIDE = 460;   // duración del desplazamiento
   const typedEl = document.getElementById('typed-codec');
-  let codecIdx = 0;
-  let charIdx = 0;
-  let deleting = false;
-  let typeSpeed = 110;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function typeTick(){
-    if(!typedEl) return;
-    const current = codecs[codecIdx];
-    const isMKV = current === "MKV";
-    if(!deleting){
-      // typing
-      typedEl.textContent = current.slice(0, charIdx + 1);
-      charIdx++;
-      typedEl.classList.toggle('mkv', isMKV);
-      if(charIdx === current.length){
-        // pause at full word
-        const pause = isMKV ? 2200 : 1400;
-        deleting = false;
-        setTimeout(()=>{ deleting = true; typeTick(); }, pause);
-        return;
-      }
-      typeSpeed = isMKV ? 120 : 95;
-    } else {
-      // deleting
-      typedEl.textContent = current.slice(0, charIdx - 1);
-      charIdx--;
-      if(charIdx === 0){
-        deleting = false;
-        codecIdx = (codecIdx + 1) % codecs.length;
-        // special: after MKV cycle, subtle glow pulse
-        if(codecs[codecIdx] === "MKV"){
-          typedEl.parentElement.animate(
-            [{boxShadow:'0 4px 16px rgba(153,51,230,0.2)'},{boxShadow:'0 8px 32px rgba(191,89,255,0.45)'},{boxShadow:'0 4px 16px rgba(153,51,230,0.2)'}],
-            {duration:700, easing:'ease-out'}
+  if(typedEl && !reduceMotion){
+    let codecIdx = 0;
+
+    const showCodec = (text, dir) => {
+      // dir: -1 entra desde abajo (hacia arriba visualmente), +1 sale hacia arriba
+      typedEl.animate(
+        [
+          { transform:'translateY(0)',   opacity:1, filter:'blur(0px)' },
+          { transform:`translateY(${dir}%)`, opacity:0, filter:'blur(4px)' }
+        ],
+        { duration: SLIDE, easing:'cubic-bezier(.4,0,.2,1)', fill:'forwards' }
+      ).finished.then(()=>{
+        typedEl.textContent = text;
+        typedEl.classList.toggle('is-mkv', text === 'MKV');
+        typedEl.animate(
+          [
+            { transform:`translateY(${-dir}%)`, opacity:0, filter:'blur(4px)' },
+            { transform:'translateY(0)', opacity:1, filter:'blur(0px)' }
+          ],
+          { duration: SLIDE, easing:'cubic-bezier(.16,1,.3,1)', fill:'forwards' }
+        );
+      });
+    };
+
+    const advance = ()=>{
+      codecIdx = (codecIdx + 1) % codecs.length;
+      const next = codecs[codecIdx];
+      showCodec(next, -1);
+      // tras completar la vuelta, pulse suave en MKV
+      setTimeout(()=>{
+        if(next === 'MKV'){
+          typedEl.animate(
+            [{ transform:'scale(1)' }, { transform:'scale(1.08)' }, { transform:'scale(1)' }],
+            { duration: 600, easing:'cubic-bezier(.34,1.56,.64,1)' }
           );
         }
-        setTimeout(typeTick, 320);
-        return;
-      }
-      typeSpeed = 55;
-    }
-    setTimeout(typeTick, typeSpeed);
-  }
-  // start with MKV already typed, then cycle
-  if(typedEl){
+      }, SLIDE);
+      setTimeout(advance, HOLD + SLIDE * 2);
+    };
+
     typedEl.textContent = "MKV";
-    charIdx = 3;
-    // wait a bit then start deleting
-    setTimeout(()=>{ deleting = true; typeTick(); }, 2400);
+    typedEl.classList.add('is-mkv');
+    setTimeout(advance, HOLD);
+  } else if(typedEl){
+    // sin animación: texto estático
+    typedEl.textContent = "MKV";
+    typedEl.classList.add('is-mkv');
   }
 
   // --- Scroll reveal ---
@@ -403,6 +419,24 @@
     window.addEventListener('scroll', onNavScroll, {passive:true});
     onNavScroll();
   }
+
+  // --- Scroll progress bar ---
+  const progress = document.getElementById('scrollProgress');
+  if(progress){
+    let pTicking = false;
+    const updateProgress = ()=>{
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      progress.style.transform = `scaleX(${ratio})`;
+      pTicking = false;
+    };
+    window.addEventListener('scroll', ()=>{
+      if(!pTicking){ requestAnimationFrame(updateProgress); pTicking = true; }
+    }, {passive:true});
+    window.addEventListener('resize', updateProgress, {passive:true});
+    updateProgress();
+  }
   // --- Nav toggle (mobile) ---
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
@@ -477,22 +511,39 @@
   });
   applyI18n(currentLang);
 
-  // --- Easter Eggs: Matroska + Mac (Makp = Mac + Matroska) ---
+  // --- Easter Egg: Matryoshka + Player = MAKP (Mac + Player) ---
   const egg = document.getElementById('matroskaEgg');
   const eggClose = document.getElementById('eggClose');
+  let eggOpener = null;   // para devolver el foco al cerrarlo
+
   function openEgg(){
-    if(!egg) return;
+    if(!egg || !egg.hasAttribute('hidden')) return;
+    eggOpener = document.activeElement;
     egg.removeAttribute('hidden');
     document.body.style.overflow='hidden';
+    // el foco entra en el diálogo para que Escape/tab funcionen
+    requestAnimationFrame(()=> eggClose?.focus());
   }
   function closeEgg(){
-    if(!egg) return;
+    if(!egg || egg.hasAttribute('hidden')) return;
     egg.setAttribute('hidden','');
     document.body.style.overflow='';
+    if(eggOpener && typeof eggOpener.focus === 'function') eggOpener.focus();
+    eggOpener = null;
   }
   if(eggClose) eggClose.addEventListener('click', closeEgg);
   egg?.querySelector('.egg-backdrop')?.addEventListener('click', closeEgg);
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && egg && !egg.hasAttribute('hidden')) closeEgg(); });
+  // trampa de foco: Tab no debe salir del diálogo mientras está abierto
+  egg?.addEventListener('keydown', e=>{
+    if(e.key === 'Escape'){ e.preventDefault(); closeEgg(); return; }
+    if(e.key !== 'Tab') return;
+    const focusables = egg.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+    if(!focusables.length) return;
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+
   let logoClicks=0, logoTimer;
   document.querySelectorAll('.hero-logo-wrap, .hero-logo, #navLogo, #navLogo img, .brand').forEach(el=>{
     el.style.cursor='pointer';
@@ -519,12 +570,14 @@
   });
   let keyBuffer="";
   document.addEventListener('keydown', e=>{
+    // no acumular teclas mientras el egg está abierto (el diálogo gestiona su propio Escape)
+    if(egg && !egg.hasAttribute('hidden')) return;
     if(e.key.length===1) keyBuffer+=e.key.toLowerCase();
     else if(e.key==='Backspace') keyBuffer=keyBuffer.slice(0,-1);
     keyBuffer=keyBuffer.slice(-14);
     if(keyBuffer.includes('matryoshka')){
       openEgg(); keyBuffer="";
-      console.log('%c Matryoshka + Player = Makp — Makp = Mac + Player ', 'background:linear-gradient(90deg,#BF59FF,#7C3AED);color:#fff;padding:4px 10px;border-radius:8px;font-weight:700');
+      console.log('%c Matryoshka + Player = MAKP — MAKP = Mac + Player ', 'background:linear-gradient(90deg,#BF59FF,#7C3AED);color:#fff;padding:4px 10px;border-radius:8px;font-weight:700');
     } else if(keyBuffer.endsWith('makp')){
       document.querySelector('.hero-makp')?.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:320});
       openEgg(); keyBuffer="";

@@ -38,6 +38,8 @@
     <div class="orb orb3" data-parallax="0.08"></div>
   </div>
 
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a class="brand" href="#" title="Makp = Mac + Matroska">
@@ -75,33 +77,36 @@
         <img src="assets/icon.png" alt="MAKP logo" class="hero-logo" title="Psst… click me 3 times" />
       </div>
 
-      <div class="hero-main-row">
-        <div class="hero-title-wrap reveal" data-delay="120">
-          <h1 class="hero-title">
-            <span class="hero-makp">MAKP</span>
-            <span class="hero-rotor"><span data-i18n="hero_before">A </span><span class="typed-wrap"><span id="typed-codec" class="typed">MKV</span><span class="cursor" aria-hidden="true"></span></span><span data-i18n="hero_after"> PLAYER FOR MACOS</span></span>
-          </h1>
-        </div>
-        <div class="hero-cta-wrap reveal" data-delay="200" id="download">
-          <a id="download-btn" class="btn btn-primary" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
-            <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="btn-label" data-i18n="download">DESCARGAR</span>
-            <span class="btn-sub">DMG • 1.1</span>
-          </a>
-          <div class="hero-cta-meta">
-            <span id="release-info" data-i18n="release_checking">DETECTANDO ÚLTIMO RELEASE…</span>
-          </div>
+      <h1 class="hero-title reveal" data-delay="120">
+        <span class="hero-makp">MAKP</span>
+        <span class="hero-rotor"><span data-i18n="hero_before">A </span><span class="typed-wrap" id="typedWrap"><span class="typed-viewport"><span class="typed" id="typed-codec">MKV</span></span></span><span data-i18n="hero_after"> PLAYER FOR MACOS</span></span>
+      </h1>
+
+      <div class="hero-cta-wrap reveal" data-delay="240" id="download">
+        <a id="download-btn" class="btn btn-primary btn-hero" href="https://github.com/andyechc/makp-landing/releases/latest/download/MAKP-1.1.dmg">
+          <span class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="btn-label" data-i18n="download">DESCARGAR</span>
+          <span class="btn-sub">DMG • 1.1</span>
+        </a>
+        <div class="hero-cta-meta">
+          <span id="release-info" data-i18n="release_checking">DETECTANDO ÚLTIMO RELEASE…</span>
         </div>
       </div>
 
-      <div class="hero-meta reveal" data-delay="260">
+      <div class="hero-trust reveal" data-delay="300">
+        <span class="trust-pill"><span class="trust-check">✓</span><span data-i18n="trust_native">macOS 26.5+</span></span>
+        <span class="trust-pill"><span class="trust-check">✓</span><span data-i18n="trust_formats">12 formatos</span></span>
+        <span class="trust-pill"><span class="trust-check">✓</span><span data-i18n="trust_private">Sin cuenta ni telemetría</span></span>
+      </div>
+
+      <div class="hero-meta reveal" data-delay="340">
         <span class="meta-item coming-soon" data-i18n="coming_soon">COMING SOON — WINDOWS</span>
       </div>
+    </div>
 
-      <div class="scroll-hint reveal" data-delay="300" aria-hidden="true">
-        <span>SCROLL</span>
-        <i></i>
-      </div>
+    <div class="scroll-hint reveal" data-delay="380" aria-hidden="true">
+      <span>SCROLL</span>
+      <i></i>
     </div>
 
     <div class="marquee reveal" data-delay="380" aria-label="Formatos soportados">
@@ -221,19 +226,42 @@
   </footer>
 
   <!-- Easter Egg: Matryoshka + Player = Makp → Mac + Player -->
-  <div id="matroskaEgg" class="egg-overlay" hidden>
+  <div id="matroskaEgg" class="egg-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="eggTitle">
     <div class="egg-backdrop"></div>
     <div class="egg-content">
+      <div class="egg-badge">Easter egg desbloqueado</div>
+
+      <!-- Pila vertical: cada capa contiene la siguiente, como una muñeca rusa -->
       <div class="matroska-stack" aria-hidden="true">
-        <div class="doll doll-1"><span class="doll-face">◉‿◉</span><span class="doll-label">MATRYOSHKA</span></div>
-        <div class="doll doll-2"><span class="doll-face">◕‿◕</span><span class="doll-label">PLAYER</span></div>
-        <div class="doll doll-3"><span class="doll-face">｡‿｡</span><span class="doll-label">MAKP</span></div>
-        <div class="doll doll-4"><span class="doll-face">▶</span></div>
+        <div class="doll doll-1">
+          <span class="doll-rim"></span>
+          <span class="doll-label">MATRYOSHKA</span>
+        </div>
+        <div class="doll doll-2">
+          <span class="doll-rim"></span>
+          <span class="doll-label">PLAYER</span>
+        </div>
+        <div class="doll doll-3">
+          <span class="doll-rim"></span>
+          <span class="doll-label">MAKP</span>
+        </div>
+        <div class="doll doll-4">
+          <span class="doll-play">▶</span>
+        </div>
+        <div class="doll-tracks">
+          <span class="track-chip">VIDEO</span>
+          <span class="track-chip">AUDIO</span>
+          <span class="track-chip">SUBS</span>
+        </div>
       </div>
-      <h3>Matryoshka + Player <span class="egg-eq">=</span> Makp</h3>
-      <p class="egg-sub">Makp → Mac + Player — Like dolls inside dolls, tracks inside MKV.</p>
-      <p class="egg-hint">Psst… escribe <code>matryoshka</code> o haz 3 clicks en el logo.</p>
-      <button class="egg-close" id="eggClose">Cerrar ✕</button>
+
+      <h3 id="eggTitle"><span class="egg-term">Matryoshka</span> + <span class="egg-term">Player</span> <span class="egg-eq">=</span> <span class="egg-term egg-term-hi">MAKP</span></h3>
+      <p class="egg-sub">Tracks dentro de MKV, como muñecas dentro de muñecas.<br/><strong>MAKP</strong> = <span class="mac">Mac</span> + <span class="mac">Player</span></p>
+
+      <div class="egg-hint">
+        <span>Se abre escribiendo <code>matryoshka</code> o <code>makp</code>, con 3 clicks en el logo, o al pulsar el tag de formatos.</span>
+      </div>
+      <button class="egg-close" id="eggClose" aria-label="Cerrar easter egg">Cerrar ✕</button>
     </div>
   </div>
 
